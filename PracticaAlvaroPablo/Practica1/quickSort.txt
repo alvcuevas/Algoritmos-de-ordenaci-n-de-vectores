@@ -1,0 +1,25 @@
+// Algoritmo de quicksort
+vector<int> Algoritmo::quicksort_rapido(vector<int> &q, Opciones &op){
+    vector<int> less, equal, greater;
+    
+    if(q.size() > 1){ 
+        // Pivote random entre los q.size() elementos del array.
+1       int pivot = q[rand()%q.size()]; 
+        
+        // Colocamos los numeros en el vector que correspondan.
+        for (int i=0; i<q.size(); i++){ 
+2           int curr = q[i]; 
+3           if(curr < pivot) less.push_back(curr);
+4           if(curr == pivot) equal.push_back(curr);
+5           if(curr > pivot) greater.push_back(curr);
+        }
+        
+        // Hacemos la llamada recursiva con las dos partes (izquierda y luego derecha).
+6       quicksort_rapido(less, op); 
+7       quicksort_rapido(greater, op); 
+        
+        // Al final, juntamos todos los array y los metemos en q.
+8       Util::appendVectors(q, less, equal, greater);
+    }
+    return q;
+}

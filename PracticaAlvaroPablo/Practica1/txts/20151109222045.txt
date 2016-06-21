@@ -1,0 +1,197 @@
+Definicion de la tabla:
+ - N: el número de línea que se acaba de ejecutar (o se va a ejecutar).
+ - a: el estado actual del array principal a.
+ - b: valor actual de la variable beg (begin).
+ - e: valor actual de la variable end.
+ - m: valor actual de la variable m (middle).
+ - i: valor actual de la variable i.
+ - l: valor actual de la variable l.
+ - j: valor actual de la variable j.
+ - k: valor actual de la variable k.
+ - *c: valor de la condición j>end || (i<=mid && array[i]<array[j]).
+
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+1 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]| 0| 8| 4|  | Seteando los valores de r, p y q.
+2 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|  |  |  | V| Llamada recursiva desde r(0) hasta r+q(4).
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+1 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]| 0| 4| 2|  | Seteando los valores de r, p y q.
+2 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|  |  |  | V| Llamada recursiva desde r(0) hasta r+q(2).
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+1 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]| 0| 2| 1|  | Seteando los valores de r, p y q.
+4 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|  |  |  | F| Va a ordenar el vector izq desde r(0) hasta r+q(1).
+
+Método sortSubarray:
+N |              a             | i| f|qt|ot|c1| Acción realizada
+--------------------------------------------------------------
+7 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]| 0| 1| 1|  |  | Inicializamos qty=pFin-pInicio.
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+5 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|  |  |  | F| Va a ordenar el vector der desde r+q+1(2) hasta p(2).
+
+Método sortSubarray:
+N |              a             | i| f|qt|ot|c1| Acción realizada
+--------------------------------------------------------------
+7 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]| 2| 2| 0|  |  | Inicializamos qty=pFin-pInicio.
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+6 |[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|  |  |  |  | Vamos a hacer mergE entre las dos partes del array.
+
+Método mergE:
+
+N |              a             | i| j| k|c1|c2|c3|c4| Acción realizada
+------------------------------------------------------------------------------------------
+11|[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|[ 0, 0, 0]|  |  |  |  |  |  |  | Seteadas variables i,j,k. Inicializado vector ldef con 3 espacios.
+12|[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|[ 0, 0, 0]|  |  |  | V|  |  |  | Condición 1 verdadero (i<=r+q). Entra en el while.
+13|[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|[ 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+14|[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|[ 4, 0, 0]| 1|  | 1|  |  | V|  | Condición 3 verdadero (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[i]. i++, k++
+13|[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|[ 4, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|[ 4, 6, 0]|  | 3| 2|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+16|[ 4, 7, 6, 5, 6, 5, 0, 2, 4]|[ 4, 6, 7]| 3| 3|  |  |  |  | V| Condición 4 verdadero (j>=p && k < ldef.size()). Haciendo ldef[k]=lista[i]. j++, i++
+17|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 4, 6, 7]|  |  |  |  |  |  |  | Volcado ldef en lista.
+3 |[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|  |  |  | V| Llamada recursiva desde r+q+1(3) hasta p(4).
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+1 |[ 4, 6, 7, 5, 6, 5, 0, 2, 4]| 3| 4| 0|  | Seteando los valores de r, p y q.
+4 |[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|  |  |  | F| Va a ordenar el vector izq desde r(3) hasta r+q(3).
+
+Método sortSubarray:
+N |              a             | i| f|qt|ot|c1| Acción realizada
+--------------------------------------------------------------
+7 |[ 4, 6, 7, 5, 6, 5, 0, 2, 4]| 3| 3| 0|  |  | Inicializamos qty=pFin-pInicio.
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+5 |[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|  |  |  | F| Va a ordenar el vector der desde r+q+1(4) hasta p(4).
+
+Método sortSubarray:
+N |              a             | i| f|qt|ot|c1| Acción realizada
+--------------------------------------------------------------
+7 |[ 4, 6, 7, 5, 6, 5, 0, 2, 4]| 4| 4| 0|  |  | Inicializamos qty=pFin-pInicio.
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+6 |[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|  |  |  |  | Vamos a hacer mergE entre las dos partes del array.
+
+Método mergE:
+
+N |              a             | i| j| k|c1|c2|c3|c4| Acción realizada
+------------------------------------------------------------------------------------------
+11|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 0, 0]|  |  |  |  |  |  |  | Seteadas variables i,j,k. Inicializado vector ldef con 2 espacios.
+12|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 0, 0]|  |  |  | V|  |  |  | Condición 1 verdadero (i<=r+q). Entra en el while.
+13|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+14|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 5, 0]| 4|  | 1|  |  | V|  | Condición 3 verdadero (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[i]. i++, k++
+13|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 5, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 5, 6]|  | 5| 2|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+17|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 5, 6]|  |  |  |  |  |  |  | Volcado ldef en lista.
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+6 |[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|  |  |  |  | Vamos a hacer mergE entre las dos partes del array.
+
+Método mergE:
+
+N |              a             | i| j| k|c1|c2|c3|c4| Acción realizada
+------------------------------------------------------------------------------------------
+11|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 0, 0, 0, 0, 0]|  |  |  |  |  |  |  | Seteadas variables i,j,k. Inicializado vector ldef con 5 espacios.
+12|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 0, 0, 0, 0, 0]|  |  |  | V|  |  |  | Condición 1 verdadero (i<=r+q). Entra en el while.
+13|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 0, 0, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+14|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 4, 0, 0, 0, 0]| 1|  | 1|  |  | V|  | Condición 3 verdadero (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[i]. i++, k++
+13|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 4, 0, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 4, 5, 0, 0, 0]|  | 4| 2|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+13|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 4, 5, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 4, 5, 6, 0, 0]|  | 5| 3|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+16|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 4, 5, 6, 6, 0]| 4| 5|  |  |  |  | V| Condición 4 verdadero (j>=p && k < ldef.size()). Haciendo ldef[k]=lista[i]. j++, i++
+12|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 4, 5, 6, 6, 0]|  |  |  | V|  |  |  | Condición 1 verdadero (i<=r+q). Entra en el while.
+16|[ 4, 6, 7, 5, 6, 5, 0, 2, 4]|[ 4, 5, 6, 6, 7]| 5| 5|  |  |  |  | V| Condición 4 verdadero (j>=p && k < ldef.size()). Haciendo ldef[k]=lista[i]. j++, i++
+17|[ 4, 5, 6, 6, 7, 5, 0, 2, 4]|[ 4, 5, 6, 6, 7]|  |  |  |  |  |  |  | Volcado ldef en lista.
+3 |[ 4, 5, 6, 6, 7, 5, 0, 2, 4]|  |  |  | V| Llamada recursiva desde r+q+1(5) hasta p(8).
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+1 |[ 4, 5, 6, 6, 7, 5, 0, 2, 4]| 5| 8| 1|  | Seteando los valores de r, p y q.
+4 |[ 4, 5, 6, 6, 7, 5, 0, 2, 4]|  |  |  | F| Va a ordenar el vector izq desde r(5) hasta r+q(6).
+
+Método sortSubarray:
+N |              a             | i| f|qt|ot|c1| Acción realizada
+--------------------------------------------------------------
+7 |[ 4, 5, 6, 6, 7, 5, 0, 2, 4]| 5| 6| 1|  |  | Inicializamos qty=pFin-pInicio.
+8 |[ 4, 5, 6, 6, 7, 5, 0, 2, 4]|  |  |  | 5| V| Condición verdadera, seteamos otro=listaDesordenada[pInicio].
+9 |[ 4, 5, 6, 6, 7, 0, 0, 2, 4]|  |  |  |  |  | Seteamos listaDesordenada[pInicio]=listaDesordenada[pFin].
+10|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|  |  |  |  |  | Seteamos listaDesordenada[pFin]=otro.
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+5 |[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|  |  |  | F| Va a ordenar el vector der desde r+q+1(7) hasta p(8).
+
+Método sortSubarray:
+N |              a             | i| f|qt|ot|c1| Acción realizada
+--------------------------------------------------------------
+7 |[ 4, 5, 6, 6, 7, 0, 5, 2, 4]| 7| 8| 1|  |  | Inicializamos qty=pFin-pInicio.
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+6 |[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|  |  |  |  | Vamos a hacer mergE entre las dos partes del array.
+
+Método mergE:
+
+N |              a             | i| j| k|c1|c2|c3|c4| Acción realizada
+------------------------------------------------------------------------------------------
+11|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|[ 0, 0, 0, 0]|  |  |  |  |  |  |  | Seteadas variables i,j,k. Inicializado vector ldef con 4 espacios.
+12|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|[ 0, 0, 0, 0]|  |  |  | V|  |  |  | Condición 1 verdadero (i<=r+q). Entra en el while.
+13|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|[ 0, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+14|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|[ 0, 0, 0, 0]| 6|  | 1|  |  | V|  | Condición 3 verdadero (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[i]. i++, k++
+13|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|[ 0, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|[ 0, 2, 0, 0]|  | 8| 2|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+13|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|[ 0, 2, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|[ 0, 2, 4, 0]|  |9| 3|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+16|[ 4, 5, 6, 6, 7, 0, 5, 2, 4]|[ 0, 2, 4, 5]| 4|9|  |  |  |  | V| Condición 4 verdadero (j>=p && k < ldef.size()). Haciendo ldef[k]=lista[i]. j++, i++
+17|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 5]|  |  |  |  |  |  |  | Volcado ldef en lista.
+
+Vuelta a método mergesort:
+N |              a             | r| p| q|c1| Acción realizada
+-------------------------------------------------------------
+6 |[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|  |  |  |  | Vamos a hacer mergE entre las dos partes del array.
+
+Método mergE:
+
+N |              a             | i| j| k|c1|c2|c3|c4| Acción realizada
+------------------------------------------------------------------------------------------
+11|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 0, 0, 0, 0, 0, 0, 0, 0]|  |  |  |  |  |  |  | Seteadas variables i,j,k. Inicializado vector ldef con 9 espacios.
+12|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 0, 0, 0, 0, 0, 0, 0, 0]|  |  |  | V|  |  |  | Condición 1 verdadero (i<=r+q). Entra en el while.
+13|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 0, 0, 0, 0, 0, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 0, 0, 0, 0, 0, 0, 0, 0]|  | 6| 1|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+13|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 0, 0, 0, 0, 0, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 0, 0, 0, 0, 0, 0, 0]|  | 7| 2|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+13|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 0, 0, 0, 0, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 0, 0, 0, 0, 0, 0]|  | 8| 3|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+13|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 0, 0, 0, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+14|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 0, 0, 0, 0, 0]| 1|  | 4|  |  | V|  | Condición 3 verdadero (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[i]. i++, k++
+13|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 0, 0, 0, 0, 0]|  |  |  |  | V|  |  | Condición 2 verdadero (j<=p). Entra en el while.
+15|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 5, 0, 0, 0, 0]|  |9| 5|  |  | F|  | Condición 3 falso (i <= r+q && lista[i]<lista[j]). Alternando ldef[k]=lista[j]. j++, k++
+16|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 5, 5, 0, 0, 0]| 6|9|  |  |  |  | V| Condición 4 verdadero (j>=p && k < ldef.size()). Haciendo ldef[k]=lista[i]. j++, i++
+12|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 5, 5, 0, 0, 0]|  |  |  | V|  |  |  | Condición 1 verdadero (i<=r+q). Entra en el while.
+16|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 5, 5, 6, 0, 0]| 7|9|  |  |  |  | V| Condición 4 verdadero (j>=p && k < ldef.size()). Haciendo ldef[k]=lista[i]. j++, i++
+12|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 5, 5, 6, 0, 0]|  |  |  | V|  |  |  | Condición 1 verdadero (i<=r+q). Entra en el while.
+16|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 5, 5, 6, 6, 0]| 8|9|  |  |  |  | V| Condición 4 verdadero (j>=p && k < ldef.size()). Haciendo ldef[k]=lista[i]. j++, i++
+12|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 5, 5, 6, 6, 0]|  |  |  | V|  |  |  | Condición 1 verdadero (i<=r+q). Entra en el while.
+16|[ 4, 5, 6, 6, 7, 0, 2, 4, 5]|[ 0, 2, 4, 4, 5, 5, 6, 6, 7]|9|9|  |  |  |  | V| Condición 4 verdadero (j>=p && k < ldef.size()). Haciendo ldef[k]=lista[i]. j++, i++
+17|[ 0, 2, 4, 4, 5, 5, 6, 6, 7]|[ 0, 2, 4, 4, 5, 5, 6, 6, 7]|  |  |  |  |  |  |  | Volcado ldef en lista.

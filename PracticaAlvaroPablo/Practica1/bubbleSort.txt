@@ -1,0 +1,14 @@
+Aqui se muestra el algoritmo elegido para poder seguir el funcionamiento del programa con los numeros de línea indicados a continuacion:
+ 
+ proc ordenamiento_por_burbuja(E/S array[n] de entero:a)
+ var 
+    entero: i, j
+ inicio 
+1   para i=1 hasta n-1 hacer
+2      para j=1 hasta n-i hacer   
+3         si a[j]>a[j+1] entonces
+4            intercambiar a[j] y a[j+1] 
+5         fin_si
+6      fin_para
+7   fin_para 
+ fin_proc

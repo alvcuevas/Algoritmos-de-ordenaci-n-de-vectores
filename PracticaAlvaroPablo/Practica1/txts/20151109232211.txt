@@ -1,0 +1,59 @@
+Definicion de la tabla:
+ - N: el número de línea que se acaba de ejecutar (o se va a ejecutar).
+ - a: el estado actual del array principal a.
+ - p: valor actual de la variable p.
+ - q: valor actual de la variable q.
+ - i: valor actual de la variable i.
+ - x: valor actual de la variable x.
+ - Accion realizada: breve descripción de la línea que se acaba de ejecutar.
+
+N |              a             | p| q| i| x| Acción realizada
+--------------------------------------------------------------
+1 |[71,23, 0,80, 6,91,20,68,97]|23|  | <| V|Entra en el primer if. Setea pivote-
+4 |[71,23, 0,80, 6,91,20,68,97]|  |71| >|  | curr > pivot. Metiendo el valor de curr en greater.
+3 |[71,23, 0,80, 6,91,20,68,97]|  |23| =|  | curr = pivot. Metiendo el valor de curr en equal.
+2 |[71,23, 0,80, 6,91,20,68,97]|  | 0| <|  | curr < pivot. Metiendo el valor de curr en less.
+4 |[71,23, 0,80, 6,91,20,68,97]|  |80| >|  | curr > pivot. Metiendo el valor de curr en greater.
+2 |[71,23, 0,80, 6,91,20,68,97]|  | 6| <|  | curr < pivot. Metiendo el valor de curr en less.
+4 |[71,23, 0,80, 6,91,20,68,97]|  |91| >|  | curr > pivot. Metiendo el valor de curr en greater.
+2 |[71,23, 0,80, 6,91,20,68,97]|  |20| <|  | curr < pivot. Metiendo el valor de curr en less.
+4 |[71,23, 0,80, 6,91,20,68,97]|  |68| >|  | curr > pivot. Metiendo el valor de curr en greater.
+4 |[71,23, 0,80, 6,91,20,68,97]|  |97| >|  | curr > pivot. Metiendo el valor de curr en greater.
+5 |[71,23, 0,80, 6,91,20,68,97]|  |  |  |  | Va a hacer la llamada recursiva con el vector less.
+1 |[ 0, 6,20]| 0|  | <| V|Entra en el primer if. Setea pivote-
+3 |[ 0, 6,20]|  | 0| =|  | curr = pivot. Metiendo el valor de curr en equal.
+4 |[ 0, 6,20]|  | 6| >|  | curr > pivot. Metiendo el valor de curr en greater.
+4 |[ 0, 6,20]|  |20| >|  | curr > pivot. Metiendo el valor de curr en greater.
+5 |[ 0, 6,20]|  |  |  |  | Va a hacer la llamada recursiva con el vector less.
+6 |[ 0, 6,20]|  |  |  |  | Va a hacer la llamada recursiva con el vector greater.
+1 |[ 6,20]| 6|  | <| V|Entra en el primer if. Setea pivote-
+3 |[ 6,20]|  | 6| =|  | curr = pivot. Metiendo el valor de curr en equal.
+4 |[ 6,20]|  |20| >|  | curr > pivot. Metiendo el valor de curr en greater.
+5 |[ 6,20]|  |  |  |  | Va a hacer la llamada recursiva con el vector less.
+6 |[ 6,20]|  |  |  |  | Va a hacer la llamada recursiva con el vector greater.
+7 |[ 6,20]|  |  |  |  | Va a hacer append con los tres vectores.
+7 |[ 0, 6,20]|  |  |  |  | Va a hacer append con los tres vectores.
+6 |[71,23, 0,80, 6,91,20,68,97]|  |  |  |  | Va a hacer la llamada recursiva con el vector greater.
+1 |[71,80,91,68,97]|91|  | <| V|Entra en el primer if. Setea pivote-
+2 |[71,80,91,68,97]|  |71| <|  | curr < pivot. Metiendo el valor de curr en less.
+2 |[71,80,91,68,97]|  |80| <|  | curr < pivot. Metiendo el valor de curr en less.
+3 |[71,80,91,68,97]|  |91| =|  | curr = pivot. Metiendo el valor de curr en equal.
+2 |[71,80,91,68,97]|  |68| <|  | curr < pivot. Metiendo el valor de curr en less.
+4 |[71,80,91,68,97]|  |97| >|  | curr > pivot. Metiendo el valor de curr en greater.
+5 |[71,80,91,68,97]|  |  |  |  | Va a hacer la llamada recursiva con el vector less.
+1 |[71,80,68]|80|  | <| V|Entra en el primer if. Setea pivote-
+2 |[71,80,68]|  |71| <|  | curr < pivot. Metiendo el valor de curr en less.
+3 |[71,80,68]|  |80| =|  | curr = pivot. Metiendo el valor de curr en equal.
+2 |[71,80,68]|  |68| <|  | curr < pivot. Metiendo el valor de curr en less.
+5 |[71,80,68]|  |  |  |  | Va a hacer la llamada recursiva con el vector less.
+1 |[71,68]|71|  | <| V|Entra en el primer if. Setea pivote-
+3 |[71,68]|  |71| =|  | curr = pivot. Metiendo el valor de curr en equal.
+2 |[71,68]|  |68| <|  | curr < pivot. Metiendo el valor de curr en less.
+5 |[71,68]|  |  |  |  | Va a hacer la llamada recursiva con el vector less.
+6 |[71,68]|  |  |  |  | Va a hacer la llamada recursiva con el vector greater.
+7 |[71,68]|  |  |  |  | Va a hacer append con los tres vectores.
+6 |[71,80,68]|  |  |  |  | Va a hacer la llamada recursiva con el vector greater.
+7 |[71,80,68]|  |  |  |  | Va a hacer append con los tres vectores.
+6 |[71,80,91,68,97]|  |  |  |  | Va a hacer la llamada recursiva con el vector greater.
+7 |[71,80,91,68,97]|  |  |  |  | Va a hacer append con los tres vectores.
+7 |[71,23, 0,80, 6,91,20,68,97]|  |  |  |  | Va a hacer append con los tres vectores.

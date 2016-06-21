@@ -1,0 +1,6 @@
+Para que el programa se ejecute de forma óptima, ejecutarlo desde:
+
+...\PracticaAlvaroPablo\Practica1\practica.exe
+
+
+(Esto hará que los archivos de log se guarden en: ...\lamismaruta\txts\)

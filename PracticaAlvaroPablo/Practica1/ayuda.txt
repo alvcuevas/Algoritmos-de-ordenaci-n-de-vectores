@@ -1,0 +1,26 @@
+
+Ayuda:
+
+1. Modo Paso a paso:
+Si es VERDADERO, se abrirá una consola extra a la hora de ordenar el vector elegido. Esta consola espera que el usuario pulse Enter en la consola principal del programa, para continuar ordenando el vector mediante el algoritmo seleccionado.
+IMPORTANTE: NO cerrar la consola directamente. Al finalizar todos los pasos, se da la opción de cerrarla.
+NOTA: Si se elige este modo, no se mostrará el tiempo utilizado en ordenar (por razones obvias).
+
+2. Ver algoritmo:
+Si es VERDADERO, se abrirá una consola extra cuando elijamos el algoritmo de ordenación, donde se mostrará este algoritmo tal y como se está utilizando en nuestro programa. Esto sirve de ayuda para que cuando estemos en el modo paso a paso sepamos qué línea exactamente se está ejecutando.
+Esta consola se puede cerrar en cualquier momento.
+
+3. Imprimir tiempos:
+Si es VERDADERO, se imprimirá el tiempo utilizado para ordenar el vector después de ser ordenado.
+NOTA: Este método sólo funciona si el Modo Paso a Paso está DESACTIVADO (FALSO). Por lo tanto, se desactivará el modo Paso a Paso si se elige este.
+
+4. Imprimir tabla en un txt.
+Si es verdadero, se imprimirá la tabla resultante de cada ordenación en un fichero que se guardará en "HomeDeLaApp/txts/AñoMesDiaHoraMinutoSegundo.txt".
+(Aviso: ejecutar el programa desde practica1.exe. Los txt se guardarán en donde esté practica1.exe /txts/nombrearchivo.txt.
+ Si el programa se ejecuta desde NetBeans, los archivos.txt no se guardarán porque el compilador busca la carpeta txts en la Home de cygwin, que no existe.)
+
+5. Imprimir ayuda:
+Imprime esta ayuda.
+
+6. Salir de las opciones:
+Y continuar con la ejecución del programa.

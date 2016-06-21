@@ -1,0 +1,16 @@
+﻿Aqui se muestra el algoritmo elegido para poder seguir el funcionamiento del programa con los numeros de línea indicados a continuacion:
+
+ proc ordenamiento_por_inserción(E/S array[n] de entero: a)
+ var  
+    entero: i, j, x 
+ inicio 
+1   para i=2 hasta n hacer
+2      x <- a[i]  
+3      j <- i-1  
+4      mientras (j>=1 Y a[j]>x) hacer
+5         a[j+1] <- a[j] 
+6         j <- j-1 
+7      fin_mientras  
+8      a[j+1] <- x  
+9   fin_para  
+ fin_procq  

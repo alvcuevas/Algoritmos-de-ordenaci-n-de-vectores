@@ -1,0 +1,83 @@
+Aqui se muestra el algoritmo elegido para poder seguir el funcionamiento del programa con los numeros de línea indicados a continuacion:
+
+Datos de la tabla:
+
+ - r: el valor de la variable r
+ - q: el valor de la variable q
+ - p: el valor de la variable p
+ - c1: la condición q>1
+
+vector<int> Algoritmo::mergesort_rapido(vector<int> &listaDesordenada, int pinicio, int pfin) {
+	
+    int r,p,q;
+1   r=pinicio; 
+    p=pfin; 
+    q=(p-r) / 2; 
+
+    
+    if (q>1) { op.contadorPasos++;
+2        
+        mergesort_rapido(listaDesordenada, r,r+q, op); 
+3       mergesort_rapido(listaDesordenada, r+q+1,p, op); 
+    } else {
+        
+4       sortSubarray_rapido(listaDesordenada, r, r+q, op); 
+5       sortSubarray_rapido(listaDesordenada, r+q+1, p, op); 
+    }
+
+    
+6   mergE_rapido(listaDesordenada, r, p, q, op); 
+
+    return listaDesordenada; // que ya está ordenada
+}
+	
+
+Datos de la tabla:
+
+ - qt: var qty
+ - ot: var otro
+
+// sortea subarray de uno o dos elementos (el mínimo)
+void Algoritmo::sortSubarray_rapido(vector<int> &listaDesordenada, int pInicio, int pFin) {
+
+7   int qty=pFin-pInicio; 
+    int otro;
+    if (qty>0){ op.contadorPasos++;
+        if (listaDesordenada[pInicio]>listaDesordenada[pFin]) { 
+8           otro=listaDesordenada[pInicio]; 
+9           listaDesordenada[pInicio]=listaDesordenada[pFin]; 
+10          listaDesordenada[pFin]=otro; 
+        }
+    }
+}
+	
+
+// intercala dos subarrays
+void Algoritmo::mergE_rapido(vector<int> &lista, int r, int p, int q) {
+    
+    vector<int> ldef(p-r+1); 
+11  int i=r,j=r+q+1, k=0; 
+    while (i<=r+q) { 
+        while (j<=p) { 
+            if (i <= r+q && lista[i]<lista[j] ) { 
+12              ldef[k]=lista[i]; 
+                k++; 
+                i++; 
+            } else {
+13              ldef[k]=lista[j]; 
+                k++; 
+                j++;  
+            }
+        }
+        if (j>=p && k < ldef.size()) { op.contadorPasos+=4;
+14          ldef[k]=lista[i]; op.contadorPasos+=3;
+            k++;  
+            i++;  
+        }
+    } 
+    i=0;j=r;  
+    for (i=0;i<ldef.size();i++,r++){  
+        lista[r]=ldef[i];
+    }
+15
+}
